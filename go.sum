@@ -14,8 +14,8 @@ github.com/database64128/tfo-go/v2 v2.0.2/go.mod h1:FDdt4JaAsRU66wsYHxSVytYimPkK
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/degidevops/websocket v1.0.0 h1:IumWF3QmWLzRf7Ayooresteqo3wPDIWBNd298YY3poc=
-github.com/degidevops/websocket v1.0.0/go.mod h1:P7tYA5m94MfaSSCGw7FVJ8/wskTeMtVOx8j0cY6bxqI=
+github.com/degidevops/websocket v1.0.1 h1:OYbP7YS4BzhTAnSrK5dd35OkhBPJIJxCOEEoE7AupUY=
+github.com/degidevops/websocket v1.0.1/go.mod h1:P7tYA5m94MfaSSCGw7FVJ8/wskTeMtVOx8j0cY6bxqI=
 github.com/dlclark/regexp2 v1.7.0 h1:7lJfhqlPssTb1WQx4yvTHN0uElPEv52sbaECrAQxjAo=
 github.com/dlclark/regexp2 v1.7.0/go.mod h1:DHkYz0B9wPfa6wondMfaivmHpzrQ3v9q8cnmRbL6yW8=
 github.com/fanliao/go-promise v0.0.0-20141029170127-1890db352a72/go.mod h1:PjfxuH4FZdUyfMdtBio2lsRr1AKEaVPwelzuHuh8Lqc=
