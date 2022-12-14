@@ -74,11 +74,12 @@ func (t *Tuic) ListenPacketContext(ctx context.Context, metadata *C.Metadata, op
 }
 
 func (t *Tuic) dial(ctx context.Context, opts ...dialer.Option) (pc net.PacketConn, addr net.Addr, err error) {
-	pc, err = dialer.ListenPacket(ctx, "udp", "", opts...)
+	udpAddr, err := resolveUDPAddrWithPrefer(ctx, "udp", t.addr, t.prefer)
 	if err != nil {
 		return nil, nil, err
 	}
-	addr, err = resolveUDPAddrWithPrefer(ctx, "udp", t.addr, t.prefer)
+	addr = udpAddr
+	pc, err = dialer.ListenPacket(ctx, dialer.ParseNetwork("udp", udpAddr.AddrPort().Addr()), "", opts...)
 	if err != nil {
 		return nil, nil, err
 	}

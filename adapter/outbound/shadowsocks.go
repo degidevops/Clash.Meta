@@ -90,7 +90,9 @@ func (ss *ShadowSocks) DialContext(ctx context.Context, metadata *C.Metadata, op
 	}
 	tcpKeepAlive(c)
 
-	defer safeConnClose(c, err)
+	defer func() {
+		safeConnClose(c, err)
+	}()
 
 	c, err = ss.StreamConn(c, metadata)
 	return NewConn(c, ss), err
@@ -105,14 +107,13 @@ func (ss *ShadowSocks) ListenPacketContext(ctx context.Context, metadata *C.Meta
 		}
 		return newPacketConn(uot.NewClientConn(tcpConn), ss), nil
 	}
-	pc, err := dialer.ListenPacket(ctx, "udp", "", ss.Base.DialOptions(opts...)...)
+	addr, err := resolveUDPAddrWithPrefer(ctx, "udp", ss.addr, ss.prefer)
 	if err != nil {
 		return nil, err
 	}
 
-	addr, err := resolveUDPAddrWithPrefer(ctx, "udp", ss.addr, ss.prefer)
+	pc, err := dialer.ListenPacket(ctx, dialer.ParseNetwork("udp", addr.AddrPort().Addr()), "", ss.Base.DialOptions(opts...)...)
 	if err != nil {
-		pc.Close()
 		return nil, err
 	}
 	pc = ss.method.DialPacketConn(&bufio.BindPacketConn{PacketConn: pc, Addr: addr})
