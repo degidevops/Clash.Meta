@@ -224,7 +224,7 @@ func (w *WireGuard) DialContext(ctx context.Context, metadata *C.Metadata, opts 
 	if conn == nil {
 		return nil, E.New("conn is nil")
 	}
-	return NewConn(CN.NewRefConn(conn, w), w), nil
+	return NewConn(CN.NewRefConn(CN.NewCloseSaveConn(conn), w), w), nil
 }
 
 func (w *WireGuard) ListenPacketContext(ctx context.Context, metadata *C.Metadata, opts ...dialer.Option) (_ C.PacketConn, err error) {
@@ -254,5 +254,5 @@ func (w *WireGuard) ListenPacketContext(ctx context.Context, metadata *C.Metadat
 	if pc == nil {
 		return nil, E.New("packetConn is nil")
 	}
-	return newPacketConn(CN.NewRefPacketConn(pc, w), w), nil
+	return newPacketConn(CN.NewRefPacketConn(CN.NewCloseSavePacketConn(pc), w), w), nil
 }
